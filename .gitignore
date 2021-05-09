@@ -100,6 +100,7 @@ celerybeat.pid
 
 # SageMath parsed files
 *.sage.py
+.vscode/
 
 # Environments
 .env
@@ -127,3 +128,14 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+#images
+*.jpeg
+*.png
+
+#dataset
+src/words/
+src/words.txt
+
+#models
+*.h5
