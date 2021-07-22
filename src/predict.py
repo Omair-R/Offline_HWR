@@ -9,7 +9,7 @@ import time
 import argparse
 
 def main():
-    
+
     parser = argparse.ArgumentParser(description="""  """, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("input", type=str, help="input image for prediction.")
     parser.add_argument("-m", "--model", default="inception_model_aug_80K.h5", help="path to the prediction model, this will change the defualt model.")
@@ -30,7 +30,7 @@ def main():
 
     print(f"The detected word is: {pred_texts}")
     if args.verbose:    
-        print(f"The time it took to predict: {end-start}.2f")
+        print(f"The time it took to predict: {end-start:.2f}s")
 
 if __name__ == "__main__":
     main()
