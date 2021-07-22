@@ -5,7 +5,7 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 from tensorflow import keras
 from tensorflow.keras import layers
 
-import utils
+from . import utils
 
 charset_base = utils.charset_base
 
