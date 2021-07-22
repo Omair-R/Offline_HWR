@@ -2,14 +2,12 @@ import os
 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
-import tensorflow as tf
 from tensorflow import keras
 from tensorflow.keras import layers
 
 import utils
 
 charset_base = utils.charset_base
-
 
 def Conventional_CNN(img_width=128, img_height=32):
 
