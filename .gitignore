@@ -129,6 +129,7 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
+currentenv/
 #images
 *.jpeg
 *.png

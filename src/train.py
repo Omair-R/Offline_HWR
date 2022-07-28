@@ -4,8 +4,6 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 from training import utils, models
 from tensorflow import keras
 from tensorflow.keras.utils import plot_model
-import graphviz
-import pydot_ng as pydot
 
 import argparse
 
@@ -35,8 +33,7 @@ def main():
         default="IAM",
         type=str,
         choices={"IAM"},
-        help="The dataset names inputted, so far, IAM is only used."
-    )
+        help="The dataset names inputted, so far, IAM is only used.")
 
     parser.add_argument(
         "-o",
@@ -70,16 +67,14 @@ def main():
                         "--batch_size",
                         type=int,
                         default=32,
-                        help="The batch size for training."
-    )
+                        help="The batch size for training.")
 
     parser.add_argument("-e",
                         "--epochs",
                         type=int,
                         default=50,
-                        help="The epochs number for training."
-    )
-    
+                        help="The epochs number for training.")
+
     parser.add_argument(
         "-n",
         "--data_num",
@@ -121,7 +116,6 @@ def main():
 
     if args.verbose == 2:
         model.summary()
-        plot_model(model, show_shapes=True, to_file='my_model.png')
 
     patience = args.patience
 
@@ -141,6 +135,7 @@ def main():
               shuffle=True)
 
     model.save(args.output)
+
 
 if __name__ == "__main__":
     main()
