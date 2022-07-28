@@ -16,6 +16,7 @@ def Conventional_CNN(img_width=128, img_height=32):
 
     x = tf.keras.layers.MaxPooling2D((2, 2))(x)
 
+    x = tf.keras.layers.BatchNormalization()(x)
     x = tf.keras.layers.Conv2D(64, (3, 3), activation="relu",
                                padding="same")(x)
     x = tf.keras.layers.MaxPooling2D((2, 2), name="pool2")(x)
@@ -27,6 +28,63 @@ def Conventional_CNN(img_width=128, img_height=32):
 
     x = tf.keras.layers.Bidirectional(
         tf.keras.layers.LSTM(128, return_sequences=True, dropout=0.25))(x)
+
+    x = tf.keras.layers.BatchNormalization()(x)
+    x = tf.keras.layers.Bidirectional(
+        tf.keras.layers.LSTM(64, return_sequences=True, dropout=0.25))(x)
+
+    output = tf.keras.layers.Dense(charset_base_size + 1,
+                                   activation="softmax")(x)
+
+    return tf.keras.models.Model(inputs=input_img, outputs=output)
+
+
+def mini_vggnet(img_width=128, img_height=32):
+
+    input_img = tf.keras.layers.Input(shape=(img_width, img_height, 1),
+                                      name="image",
+                                      dtype="float32")
+
+    x = tf.keras.layers.Conv2D(32, (3, 3), activation="relu",
+                               padding="same")(input_img)
+
+    x = tf.keras.layers.BatchNormalization()(x)
+
+    x = tf.keras.layers.Conv2D(32, (3, 3), activation="relu",
+                               padding="same")(input_img)
+
+    x = tf.keras.layers.BatchNormalization()(x)
+
+    x = tf.keras.layers.MaxPooling2D((2, 2))(x)
+
+    x = tf.keras.layers.Dropout(0.2)(x)
+
+    x = tf.keras.layers.Conv2D(64, (3, 3), activation="relu",
+                               padding="same")(x)
+
+    x = tf.keras.layers.BatchNormalization()(x)
+
+    x = tf.keras.layers.Conv2D(64, (3, 3), activation="relu",
+                               padding="same")(x)
+
+    x = tf.keras.layers.BatchNormalization()(x)
+
+    x = tf.keras.layers.MaxPooling2D((2, 2), name="pool2")(x)
+
+    x = tf.keras.layers.Dropout(0.2)(x)
+
+    shape = x.get_shape()
+    x = tf.keras.layers.Reshape((shape[1], shape[2] * shape[3]))(x)
+    x = tf.keras.layers.Dense(128, activation="relu", name="dense1")(x)
+
+    x = tf.keras.layers.BatchNormalization()(x)
+    x = tf.keras.layers.Dropout(0.2)(x)
+
+    x = tf.keras.layers.Bidirectional(
+        tf.keras.layers.LSTM(128, return_sequences=True, dropout=0.25))(x)
+
+    x = tf.keras.layers.BatchNormalization()(x)
+
     x = tf.keras.layers.Bidirectional(
         tf.keras.layers.LSTM(64, return_sequences=True, dropout=0.25))(x)
 
