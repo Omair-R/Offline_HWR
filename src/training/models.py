@@ -1,6 +1,6 @@
 import os
 import tensorflow as tf
-import data_handler
+from . import data_handler
 
 charset_base_size = len(data_handler.charset_base)
 

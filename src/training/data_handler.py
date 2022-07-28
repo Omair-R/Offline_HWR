@@ -1,6 +1,6 @@
 import numpy as np
 import cv2 as cv
-import image_processing
+from . import image_processing
 import tensorflow as tf
 import string
 import re

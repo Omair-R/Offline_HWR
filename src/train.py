@@ -1,9 +1,8 @@
 import os
 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
-from training import utils, models
+from training import models
 from tensorflow import keras
-from tensorflow.keras.utils import plot_model
 
 import argparse
 
