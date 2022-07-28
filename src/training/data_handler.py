@@ -94,7 +94,7 @@ def decode_batch_predictions(pred, max_length=16):
     decoded = []
 
     for res in results:
-        res = tf.strings.reduce_join(decode(res)).numpy().decode("utf-8")
+        res = tf.strings.reduce_join(decode(res + 1)).numpy().decode("utf-8")
         decoded.append(res)
 
     output = decoded[0]
